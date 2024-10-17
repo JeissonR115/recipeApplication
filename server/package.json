@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/JeissonR115/recipeApplication",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mariadb": "^3.3.2"
+  }
+}
