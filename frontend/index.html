@@ -4,18 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicación de recetas</title>
+    <title>Aplicación de Recetas</title>
     <link rel="stylesheet" href="./styles/styles.css">
-    <script type="module" src="./src/index.js"></script>
+    <script type="module" src="./src/index.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1>Aplicación de recetas</h1>
+        <h1>Aplicación de Recetas</h1>
     </header>
+
     <main id="main">
-        <input type="search" name="" id="">
-        <div id="recipeInfo"></div>
+        <section class="search-section">
+            <h2>Buscar Recetas</h2>
+            <input type="search" id="search" placeholder="Buscar recetas..." aria-label="Buscar recetas">
+        </section>
+        <section id="recipeInfo">
+            <!-- ejemplo de como deveria quedar -->
+            <div class="recipe-card">
+                <h3 id="recipeName">Tacos al Pastor</h3>
+                <div class="recipe-details">
+                    <p><strong>Categoría:</strong> <span id="category">Mexicana</span></p>
+                    <p><strong>Descripción:</strong> <span id="description">Deliciosos tacos con carne de cerdo
+                            marinada.</span></p>
+                    <p><strong>Paso a paso:</strong> <span id="preparationSteps">1. Marinar la carne. 2. Cocinar la
+                            carne. 3. Servir en tortillas con piña.</span></p>
+                    <p><strong>Creador:</strong> <span id="creator">chefJuan</span></p>
+                    <p><strong>Ingredientes:</strong> <span id="ingredients">Carne de cerdo (1.50 kg), Tortillas (10.00
+                            unidades), Piña (200.00 g)</span></p>
+                </div>
+                <div class="recipe-image">
+                    <img src="https://img.freepik.com/free-photo/mexican-tacos-with-beef-tomato-sauce-salsa_2829-14194.jpg?t=st=1729229608~exp=1729233208~hmac=050fd530f66b8f4a13f0b9c4d34e5f44ded60b44b76e17bc830465a428917149&w=900"
+                        alt="Imagen de Tacos al Pastor">
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 
