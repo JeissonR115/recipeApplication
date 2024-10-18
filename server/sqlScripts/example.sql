@@ -16,4 +16,4 @@ JOIN
 WHERE 
     r.recipeId = 1 -- Cambia el número a la ID de la receta que deseas ver
 GROUP BY 
-    r.recipeId, u.userId;
+    r.recipeId, u.userId;
