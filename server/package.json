@@ -2,6 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "main": "app.js",
+  "type": "module",
   "repository": "https://github.com/JeissonR115/recipeApplication",
   "license": "MIT",
   "dependencies": {
