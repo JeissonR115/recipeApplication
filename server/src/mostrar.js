@@ -25,12 +25,12 @@ class MostrarReceta {
                 JOIN Recipe_Ingredients ri ON i.ingredientId = ri.ingredientId
                 WHERE ri.recipeId = ?
             `;
-            const [ingredientes] = await db.query(ingredientesQuery, [recetaId]);
+            const [ingredients] = await db.query(ingredientesQuery, [recetaId]);
 
             // Devolver receta y sus ingredientes
             const recetaConIngredientes = {
                 ...receta[0], // Detalles de la receta
-                ingredientes: ingredientes.map(ing => ing.ingredientName) // Lista de ingredientes
+                ingredientes: ingredients.map(ing => ing.ingredientName) // Lista de ingredientes
             };
 
             res.status(200).json(recetaConIngredientes);
