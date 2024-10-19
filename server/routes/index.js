@@ -5,8 +5,8 @@ import MostrarReceta from "../src/mostrar.js";
 
 const router = express.Router();
 
-router.use("/search",BuscarReceta.searchRecipes);
-router.use("/show", MostrarReceta.mostrarReceta);
+router.use("/search", BuscarReceta.searchRecipes);
+router.use("/show/:recipeId", MostrarReceta.mostrarReceta);
 
 
 

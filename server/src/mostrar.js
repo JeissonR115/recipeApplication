@@ -1,18 +1,19 @@
 import { db } from "../app.js";
 
 class MostrarReceta {
-
     static mostrarReceta = async (req, res) => {
-        const { recetaId } = req.params; // Obtenemos el recipeId de los parámetros de la URL
+        const recipeId = req.params.recipeId; // Cambié 'receta_id' a 'recipeId'
+        console.log(recipeId);
 
-        if (!recetaId) {
+        // Validar que el ID de la receta es proporcionado
+        if (!recipeId) {
             return res.status(400).json({ error: 'Recipe ID is required' });
         }
 
         try {
             // Consulta para obtener los detalles de la receta
-            const recetaQuery = 'SELECT * FROM Recipes WHERE recetaId = ?';
-            const [receta] = await db.query(recetaQuery, [recetaId]);
+            const recetaQuery = 'SELECT * FROM Recipes WHERE recipeId = ?'; // Cambié 'receta_id' a 'recipeId'
+            const [receta] = await db.query(recetaQuery, [recipeId]);
 
             if (receta.length === 0) {
                 return res.status(404).json({ error: 'Recipe not found' });
@@ -20,17 +21,17 @@ class MostrarReceta {
 
             // Consulta para obtener los ingredientes de la receta
             const ingredientesQuery = `
-                SELECT i.ingredientName 
+                SELECT i.ingredientName, ri.quantity 
                 FROM Ingredients i
                 JOIN Recipe_Ingredients ri ON i.ingredientId = ri.ingredientId
                 WHERE ri.recipeId = ?
             `;
-            const [ingredients] = await db.query(ingredientesQuery, [recetaId]);
-
+            const [ingredients] = await db.query(ingredientesQuery, [recipeId]);
+            console.log();
             // Devolver receta y sus ingredientes
             const recetaConIngredientes = {
-                ...receta[0], // Detalles de la receta
-                ingredientes: ingredients.map(ing => ing.ingredientName) // Lista de ingredientes
+                ...receta, // Detalles de la receta
+                ingredientes: ingredients // Lista de ingredientes
             };
 
             res.status(200).json(recetaConIngredientes);
