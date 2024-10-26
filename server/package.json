@@ -6,6 +6,7 @@
   "repository": "https://github.com/JeissonR115/recipeApplication",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mariadb": "^3.3.2"
