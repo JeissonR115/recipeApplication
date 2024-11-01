@@ -10,7 +10,6 @@ router.use("/search", BuscarReceta.searchRecipes);
 router.use("/show/:recipeId", MostrarReceta.mostrarReceta);
 
 router.use('/user', userRoutes);
-
 router.use('/users', getAllUsers);
 
 export default router;

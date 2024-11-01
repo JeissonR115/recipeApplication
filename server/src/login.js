@@ -2,7 +2,8 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { db } from "../app.js";
 import dotenv from "dotenv";
-const SECRET_KEY = process.env.SECRET_KEY || 'tu_clave_secreta';
+dotenv.config();
+const SECRET_KEY = process.env.SECRET_KEY || 'testsecret';
 
 // Función para el inicio de sesión
 export const login = (req, res) => {

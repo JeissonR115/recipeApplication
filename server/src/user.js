@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { db } from "../app.js";
 
-const SECRET_KEY = 'tu_clave_secreta';
+const SECRET_KEY = 'testsecret';
 
 class User {
     constructor(username, email, password) {
@@ -30,10 +30,11 @@ class User {
 
     // Método estático para el inicio de sesión
     static async login(email, password) {
+        console.log("hola")
         return new Promise((resolve, reject) => {
             db.query('SELECT * FROM Users WHERE email = ?', [email], async (err, results) => {
                 if (err) reject(err);
-
+                console.log("hola")
                 if (results.length === 0) reject({ message: 'Usuario no encontrado' });
 
                 const user = results[0];

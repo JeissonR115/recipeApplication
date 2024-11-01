@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { db } from "../../app.js";
 
-const SECRET_KEY = 'tu_clave_secreta';
+const SECRET_KEY = 'testsecret';
 
 class User {
     constructor(username, email, password) {
@@ -41,6 +41,7 @@ class User {
             }
 
             const user = results[0];
+
             // Comparar contraseña
             const isPasswordValid = await bcrypt.compare(password, user.password);
             if (!isPasswordValid) {
@@ -57,39 +58,38 @@ class User {
 
 
     // Método estático para obtener un usuario por ID
-    static getUserById(id) {
+    static async getUserById(id) {
         const query = 'SELECT userId, username, email, registrationDate FROM Users WHERE userId = ?';
-        return new Promise((resolve, reject) => {
-            db.query(query, [id], (err, results) => {
-                if (err) reject(err);
-                if (results.length === 0) reject({ message: 'Usuario no encontrado' });
-                resolve(results[0]);
-            });
-        });
+        const results = await db.execute(query, [id]);
+        console.log(results)
+        if (results.length === 0) {
+            throw new Error('Usuario no encontrado');
+        }
+        return results[0];
     }
 
-    // Método estático para actualizar un usuario
-    static updateUser(id, username, email) {
+
+    static async updateUser(id, username, email) {
         const query = 'UPDATE Users SET username = ?, email = ? WHERE userId = ?';
-        return new Promise((resolve, reject) => {
-            db.query(query, [username, email, id], (err, result) => {
-                if (err) reject(err);
-                if (result.affectedRows === 0) reject({ message: 'Usuario no encontrado' });
-                resolve({ message: 'Usuario actualizado con éxito' });
-            });
-        });
+        const result = await db.execute(query, [username, email, id]);
+
+        if (result.affectedRows === 0) {
+            throw new Error('Usuario no encontrado');
+        }
+
+        return { message: 'Usuario actualizado con éxito' };
     }
 
-    // Método estático para eliminar un usuario
-    static deleteUser(id) {
+    static async deleteUser(id) {
         const query = 'DELETE FROM Users WHERE userId = ?';
-        return new Promise((resolve, reject) => {
-            db.query(query, [id], (err, result) => {
-                if (err) reject(err);
-                if (result.affectedRows === 0) reject({ message: 'Usuario no encontrado' });
-                resolve({ message: 'Usuario eliminado con éxito' });
-            });
-        });
+        const result = await db.execute(query, [id]);
+
+        console.log("este es el resultado", result)
+        if (result.affectedRows === 0) {
+            throw new Error('Usuario no encontrado');
+        }
+
+        return { message: 'Usuario eliminado con éxito', id: id };
     }
 
 }

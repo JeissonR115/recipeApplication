@@ -5,6 +5,9 @@
   "type": "module",
   "repository": "https://github.com/JeissonR115/recipeApplication",
   "license": "MIT",
+  "scripts": {
+    "dev":"nodemon /app.js"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
